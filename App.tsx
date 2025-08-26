@@ -1,4 +1,4 @@
-// App.tsx
+// App.tsx (Final Version)
 
 import { useState } from "react";
 import Sidebar from "./components/Sidebar";
@@ -7,53 +7,44 @@ import AnalysisView from "./components/AnalysisView";
 import DamageReport from "./components/DamageReport";
 import ScanHistory from "./components/ScanHistory";
 import Dashboard from "./components/Dashboard";
-
-// --- Import our new service and response type ---
 import { analyzeImage, ApiResponse } from "./services/auraScanService";
 
-// Define the possible pages/views in our app
-type View = "dashboard" | "new-scan" | "analysis" | "report" | "history";
+type View = "dashboard" | "new-scan" | "analysis" | "report" | "history" | "settings";
 
 export default function App() {
-  // --- State Management ---
-  // 1. 'currentView' tracks which page the user is on.
   const [currentView, setCurrentView] = useState<View>("dashboard");
-  // 2. 'analysisResult' will store the JSON response from our API.
   const [analysisResult, setAnalysisResult] = useState<ApiResponse | null>(null);
-  // 3. 'isLoading' will track when the API call is in progress.
   const [isLoading, setIsLoading] = useState(false);
-   // 4. 'errorMessage' will store any error messages.
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  // --- NEW: State to hold the uploaded image file ---
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
-  // --- Core Application Logic ---
   const handleScan = async (file: File) => {
-    // This function is called when the user uploads a file on the NewScan page
     setIsLoading(true);
     setErrorMessage(null);
-    setCurrentView("analysis"); // Switch to the loading/analysis view
+    setImageFile(file); // --- NEW: Save the file to state ---
+    setCurrentView("analysis");
 
-    const result = await analyzeImage(file); // Call our API service
+    const result = await analyzeImage(file);
 
     setIsLoading(false);
     setAnalysisResult(result);
 
     if (result.success) {
-      setCurrentView("report"); // If successful, show the damage report
+      setCurrentView("report");
     } else {
       setErrorMessage(result.error || "Failed to analyze image.");
-      setCurrentView("new-scan"); // If failed, go back to the scan page to show the error
+      setCurrentView("new-scan");
     }
   };
 
   const handleStartNewScan = () => {
-    // Reset state and go to the new scan page
     setAnalysisResult(null);
     setErrorMessage(null);
+    setImageFile(null); // --- NEW: Reset the image file ---
     setCurrentView("new-scan");
   };
 
-  // --- Render Logic ---
-  // This function decides which component to show based on the currentView state
   const renderCurrentView = () => {
     switch (currentView) {
       case "dashboard":
@@ -63,11 +54,17 @@ export default function App() {
       case "analysis":
         return <AnalysisView />;
       case "report":
-        return <DamageReport result={analysisResult} onNewScanClick={handleStartNewScan} />;
+        // --- NEW: Pass the imageFile to the DamageReport component ---
+        return <DamageReport result={analysisResult} onNewScanClick={handleStartNewScan} imageFile={imageFile} />;
       case "history":
         return <ScanHistory />;
-      default:
-        return <Dashboard onNewScanClick={handleStartNewScan} />;
+      default: // Added a settings placeholder
+        return (
+          <div className="text-center">
+            <h1 className="text-4xl font-bold">Settings</h1>
+            <p className="text-slate-400 mt-4">This page is under construction.</p>
+          </div>
+        )
     }
   };
 
