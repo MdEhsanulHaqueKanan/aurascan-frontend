@@ -1,37 +1,52 @@
-# AuraScanAI - Frontend Application
+<div align="center">
+  <h1>AuraScanAI - Frontend Application</h1>
+</div>
 
-This repository contains the complete frontend for the AuraScanAI project, a modern, AI-powered application for vehicle damage assessment. The interface is built with **React and TypeScript**, providing a fast, responsive, and intuitive user experience.
+<p align="center">
+  <img alt="React" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+  <img alt="TypeScript" src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"/>
+  <img alt="Vite" src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white"/>
+  <img alt="TailwindCSS" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"/>
+</p>
 
-This application connects to a live, AI-powered backend API to deliver real-time damage analysis.
+This repository contains the complete frontend for the AuraScanAI project, a modern, AI-powered web application for vehicle damage assessment. The interface is built with **React and TypeScript**, providing a fast, responsive, and intuitive user experience for interacting with the powerful AI backend.
 
-**➡️ Live Backend API:** [AuraScanAI API on Hugging Face Spaces](https://huggingface.co/spaces/ehsanulhaque92/AuraScanAI)
-*(Note: The live demo of this frontend is not yet deployed. See "Run Locally" instructions below.)*
+---
+
+## 🚀 Live Demo & Showcase
+
+**Live Application:** **[aurascan-ai.vercel.app](https://aurascan-ai.vercel.app/)**
+
+### Live Demo in Action
+![AuraScanAI Live Demo](./assets/AuraScanAI_demo.gif)
+<p align="center"><em>Live demo of the full analysis workflow: from image upload to the final, data-driven damage report.</em></p>
+
+### Final Application Screenshot
+![AuraScanAI Screenshot](./assets/AuraScanAI_screenshot.png)
+
+---
+
+## 🌐 Project Ecosystem
+
+*   **Live Backend API:** [Hugging Face Spaces](https://huggingface.co/spaces/ehsanulhaque92/AuraScanAI)
+*   **Backend Source Code:** [MdEhsanulHaqueKanan/aurascan-api](https://github.com/MdEhsanulHaqueKanan/aurascan-api)
 
 ---
 
 ## ✨ Key Features
 
-*   **Modern, Responsive UI:** A stunning, futuristic interface designed with a glassmorphism aesthetic that looks great on all screen sizes.
-*   **Interactive File Upload:** Features an intuitive drag-and-drop or click-to-browse file upload system.
-*   **Live AI Analysis:** Seamlessly communicates with the backend API to send an image and receive a detailed damage analysis in real-time.
-*   **Dynamic Data Visualization:** The Damage Report page is fully dynamic, populating all stat cards, the damage ledger, and a visual bounding box directly from the live API response.
-*   **Component-Based Architecture:** Built with a professional, reusable component structure, making the codebase clean, maintainable, and scalable.
-
----
-
-## 🛠️ Technology Stack
-
-*   **Framework:** React
-*   **Language:** TypeScript
-*   **Build Tool:** Vite
-*   **Styling:** Tailwind CSS (via the CDN in this version)
-*   **API Communication:** Native `fetch` API
+*   **Modern, Responsive UI:** A stunning, futuristic interface designed with a glassmorphism aesthetic that looks great on all screen sizes, from mobile to desktop.
+*   **Interactive File Upload:** Features an intuitive drag-and-drop file upload system for a seamless user experience.
+*   **Live AI Analysis:** Seamlessly communicates with the deployed backend API to deliver a detailed damage analysis in real-time.
+*   **Dynamic Data Visualization:** The Damage Report page is fully dynamic, populating all stat cards, the damage ledger, and a visual bounding box directly from the live AI response.
+*   **Component-Based Architecture:** Built with a professional, reusable component structure using React, making the codebase clean and scalable.
+*   **Type-Safe Codebase:** Written in TypeScript to ensure robustness, reduce runtime errors, and improve the developer experience.
 
 ---
 
 ## 🚀 Run Locally
 
-**Prerequisites:** [Node.js](https://nodejs.org/) installed on your system.
+**Prerequisites:** [Node.js](https://nodejs.org/) (version 16 or higher) installed on your system.
 
 ### 1. Clone the Repository
 
@@ -57,4 +72,4 @@ npm run dev
 4. Open the App
 Open your web browser and navigate to the local URL provided in the terminal (usually http://localhost:5173).
 
-**Important:** For the application to function correctly, the [AuraScanAI backend server](https://github.com/MdEhsanulHaqueKanan/aurascan-api) must be running, either locally on port 5000 or on its public Hugging Face URL. The frontend's API target URL can be configured in the `src/services/auraScanService.ts` file.
+**Important:** For the application to function correctly, the [AuraScanAI backend server](https://github.com/MdEhsanulHaqueKanan/aurascan-api) must be running. The frontend's API target URL is configured in the `src/services/auraScanService.ts` file to point to the live Hugging Face deployment.
