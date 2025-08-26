@@ -25,7 +25,7 @@ export interface ApiResponse {
   error?: string;
 }
 
-const API_URL = "http://127.0.0.1:5000/analyze";
+const API_URL = "https://ehsanulhaque92-aurascanai.hf.space/analyze";
 
 export const analyzeImage = async (file: File): Promise<ApiResponse> => {
   const formData = new FormData();
